@@ -1,7 +1,7 @@
 const tasks = [
-    { name: "Eat Pussy", timer: 0, battery: 100, element: document.getElementById("eat-battery-img"), timeElement: document.getElementById("eat-time"), isActive: true },
-    { name: "Swallow!", timer: 0, battery: 100, element: document.getElementById("drink-battery-img"), timeElement: document.getElementById("drink-time"), isActive: true },
-    { name: "Molly is starving", timer: 0, battery: 100, element: document.getElementById("feed-cat-battery-img"), timeElement: document.getElementById("feed-cat-time"), isActive: true }
+    { name: "Eat Pussy", timer: 18000, battery: 100, element: document.getElementById("eat-battery-img"), timeElement: document.getElementById("eat-time"), isActive: true },
+    { name: "Swallow!", timer: 3600, battery: 100, element: document.getElementById("drink-battery-img"), timeElement: document.getElementById("drink-time"), isActive: true },
+    { name: "Molly is starving", timer: 36000, battery: 100, element: document.getElementById("feed-cat-battery-img"), timeElement: document.getElementById("feed-cat-time"), isActive: true }
 ];
 
 // Function to get the corresponding battery image based on the charge level
@@ -19,7 +19,6 @@ function formatTime(seconds) {
     const hours = Math.floor(seconds / 3600);
     const minutes = Math.floor((seconds % 3600) / 60);
     const sec = seconds % 60;
-    
     return `${hours}h ${minutes}m ${sec}s`;
 }
 
@@ -27,15 +26,15 @@ function formatTime(seconds) {
 function updateTaskTimers() {
     tasks.forEach(task => {
         if (task.isActive) {
-            task.timer--; // Decrease time
+            task.timer--; // Decrease time by 1 second each update
             if (task.timer <= 0) {
                 task.timer = 0; // Stop the timer at 0
                 task.battery = 0; // Stop the battery at 0 (battery-1 image)
                 task.isActive = false; // Stop the task after timer runs out
             }
-            
+
             // Calculate battery percentage and set the battery image
-            const batteryPercentage = (task.timer / (task.name === "Eat Pussy" ? 360 : (task.name === "Swallow!" ? 60 : 240))) * 100;
+            const batteryPercentage = (task.timer / (task.name === "Eat Pussy" ? 21600 : (task.name === "Swallow!" ? 3600 : 36000))) * 100;
             task.battery = Math.max(batteryPercentage, 0); // Ensure battery doesn't go below 0
 
             task.element.src = getBatteryImage(task.battery); // Update the battery image
@@ -55,14 +54,20 @@ function resetTask(taskName) {
         console.error(`Task with name "${taskName}" not found.`);
         return;
     }
-    
-    task.battery = 100;
-    task.timer = taskName === "Eat Pussy" ? 360 : (taskName === "Swallow!" ? 60 : 240); // Reset to original time
-    task.isActive = true; // Activate the task again
-    task.element.src = getBatteryImage(100); // Set battery to full
+
+    if (taskName === "Eat Pussy") {
+        task.timer = 18000; // 6 hours in seconds
+    } else if (taskName === "Swallow!") {
+        task.timer = 3600; // 1 hour in seconds
+    } else if (taskName === "Molly is starving") {
+        task.timer = 36000; // 10 hours in seconds
+    }
+
+    task.battery = 100; // Reset battery to full
+    task.isActive = true; // Reactivate the task
+    task.element.src = getBatteryImage(100); // Set battery to full image
     task.timeElement.textContent = `${taskName} - Time left: ${formatTime(task.timer)}`;
 }
-
 
 // Start the timer
 setInterval(updateTaskTimers, 1000);  // Update every second
