@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Reminder App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="container">
+        <!-- Pixel Person on the left -->
+        <div id="person-container">
+            <img src="pixel-person.png" alt="Pixel Person" id="person">
+        </div>
+
+        <!-- Tasks on the right -->
+        <div id="tasks-container">
+            <!-- Task: Eat -->
+            <div class="task">
+                <h3>Eat</h3>
+                <div class="task-row">
+                    <img id="eat-battery-img" src="battery-6.png" alt="Eat Battery">
+                    <!-- Checkboxes next to Eat task -->
+                    <div class="checkboxes">
+                        <label><input type="checkbox" id="pills" /> Pills</label>
+                        <label><input type="checkbox" id="breakfast" onclick="resetTask('Eat Pussy')"/> Breakfast</label>
+                        <label><input type="checkbox" id="lunch" onclick="resetTask('Eat Pussy')"/> Lunch</label>
+                        <label><input type="checkbox" id="dinner" onclick="resetTask('Eat Pussy')"/> Dinner</label>
+                    </div>
+                </div>
+                <p id="eat-time">Time left: 6 hours</p>
+            </div>
+
+            <!-- Task: Drink -->
+            <div class="task">
+                <h3>Drink</h3>
+                <div class="task-row">
+                    <img id="drink-battery-img" src="battery-6.png" alt="Drink Battery">
+                    <!-- Water checkboxes next to Drink task -->
+                    <div class="checkboxes">
+                        <label><input type="checkbox" id="water1" onclick="resetTask('Swallow!')"/> 1st cup of water</label>
+                        <label><input type="checkbox" id="water2" onclick="resetTask('Swallow!')"/> 2nd cup of water</label>
+                        <label><input type="checkbox" id="water3" onclick="resetTask('Swallow!')"/> 3rd cup of water</label>
+                        <label><input type="checkbox" id="water4" onclick="resetTask('Swallow!')"/> 4th cup of water</label>
+                        <label><input type="checkbox" id="water5" onclick="resetTask('Swallow!')"/> 5th cup of water</label>
+                        <label><input type="checkbox" id="water6" onclick="resetTask('Swallow!')"/> 6th cup of water</label>
+                        <label><input type="checkbox" id="water7" onclick="resetTask('Swallow!')"/> 7th cups of water</label>
+                        <label><input type="checkbox" id="water8" onclick="resetTask('Swallow!')"/> 8th cup of water</label>
+                        <label><input type="checkbox" id="water9" onclick="resetTask('Swallow!')"/> 9th cup of water</label>
+                        <label><input type="checkbox" id="water10" onclick="resetTask('Swallow!')"/> 10th cup of water</label>
+                    </div>
+                </div>
+                <p id="drink-time">Time left: 1 hour</p>
+            </div>
+
+            <!-- Task: Feed Molly -->
+            <div class="task">
+                <h3>Feed Molly</h3>
+                <div class="task-row">
+                    <img id="feed-cat-battery-img" src="battery-6.png" alt="Feed Cat Battery">
+                    <!-- Checkboxes next to Feed Cat task -->
+                    <div class="checkboxes">
+                        <label><input type="checkbox" id="cat-breakfast" onclick="resetTask('Molly is starving')"/> Molly's Breakfast</label>
+                        <label><input type="checkbox" id="cat-dinner" onclick="resetTask('Molly is starving')"/> Molly's Dinner</label>
+                    </div>
+                </div>
+                <p id="feed-cat-time">Time left: 4 hours</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
